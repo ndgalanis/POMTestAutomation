@@ -1,6 +1,6 @@
 from test_data.users import user_3, user_4
 
-class TestSignUpAndAddUser:
+class TestErrorMessageForNewContactWithInvalidBirthdate:
 
     USER_1 = user_3()
     USER_2 = user_4()
