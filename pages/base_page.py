@@ -51,12 +51,11 @@ class BasePage:
             WebDriverWait(self.driver, timeout).until(
                 EC.presence_of_element_located((By.XPATH, xpath))
             )
-            # If the element is found, raise an error
             raise Exception(f"Element with xpath '{xpath}' should not exist but was found.")
         except TimeoutException:
-            return True  # Element not found within the timeout
+            return True
         except NoSuchElementException:
-            return True  # Element does not exist
+            return True
 
     def alert_accept(self):
         try:

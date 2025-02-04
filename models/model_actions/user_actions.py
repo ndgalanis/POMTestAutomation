@@ -1,5 +1,4 @@
 from pages.navigator import Navigator
-from time import sleep
 class UserActions:
 
     def __init__(self, user_data):
