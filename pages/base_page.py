@@ -9,24 +9,19 @@ from utils.singleton_driver import SingletonDriver
 class BasePage:
 
     def __init__(self):
-        """Ensure driver is available in the BasePage and child classes."""
-        #self.driver = globals.SELENIUM_DRIVER
         self.driver = SingletonDriver.get_driver()
 
     def open_page(self, url):
-        """Open a webpage."""
         self.driver.get(url)
 
     def click_element(self, xpath):
-        """Click an element using XPath. Only accessible within subclasses."""
-        self.driver.implicitly_wait(3)
         try:
-            self.driver.find_element(By.XPATH, xpath).click()
-        except NoSuchElementException:
+            element = WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable((By.XPATH, xpath)))
+            element.click()
+        except (NoSuchElementException, TimeoutException):
             raise NoSuchElementException
 
     def enter_text(self, xpath, text):
-        """Enter text into an input field. Only accessible within subclasses."""
         try:
             element = self.driver.find_element(By.XPATH, xpath)
             element.clear()
@@ -35,38 +30,41 @@ class BasePage:
             raise NoSuchElementException
 
     def get_text(self, xpath):
-        """Retrieve text from an element. Only accessible within subclasses."""
         try:
             return self.driver.find_element(By.XPATH, xpath).text
         except NoSuchElementException:
-            return None  # Return None if element is not found
-
-    def element_exists(self, xpath):
-        """Check if an element exists on the page. Only accessible within subclasses."""
-        self.driver.implicitly_wait(3)
-        try:
-            self.driver.find_element(By.XPATH, xpath)
-            return True
-        except NoSuchElementException:
             raise NoSuchElementException
 
-    def element_not_exists(self, xpath, timeout=5):
-        """Check if an element does NOT exist within the given timeout."""
+    def element_exists(self, xpath):
         try:
-            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.XPATH, xpath)))
-            return False  # Element still exists
-        except TimeoutException:
+            WebDriverWait(self.driver, 3).until(
+                EC.presence_of_element_located((By.XPATH, xpath))
+            )
             return True
+        except TimeoutException:
+            raise TimeoutException(f"Element with xpath '{xpath}' not found within 3 seconds.")
+        except NoSuchElementException:
+            raise NoSuchElementException(f"Element with xpath '{xpath}' does not exist.")
+
+    def element_not_exists(self, xpath, timeout=5):
+        try:
+            WebDriverWait(self.driver, timeout).until(
+                EC.presence_of_element_located((By.XPATH, xpath))
+            )
+            # If the element is found, raise an error
+            raise Exception(f"Element with xpath '{xpath}' should not exist but was found.")
+        except TimeoutException:
+            return True  # Element not found within the timeout
+        except NoSuchElementException:
+            return True  # Element does not exist
 
     def alert_accept(self):
-        """Accept a browser alert if present. Only accessible within subclasses."""
         try:
             Alert(self.driver).accept()
             return True
         except NoAlertPresentException:
-            return False
+            raise NoAlertPresentException
 
     def close_browser(self):
-        """Close the browser."""
         if self.driver:
             self.driver.quit()

@@ -4,7 +4,11 @@ class AddContact(BasePage):
 
     def __init__(self):
         super().__init__()
-        self.url = 'https://thinking-tester-contact-list.herokuapp.com/addUser'
+        self.url = 'https://thinking-tester-contact-list.herokuapp.com/addContact'
+        self.title = 'Add Contact'
+
+    def get_page_title(self):
+        return f'//title[contains(text(), "{self.title}")]'
 
     @staticmethod
     def get_path_first_name_field():
@@ -41,4 +45,8 @@ class AddContact(BasePage):
     def click_submit_button(self):
         self.click_element(self.get_path_submit_button())
         from pages.contact_list_page import ContactList
-        return ContactList()
+        landing_page = ContactList()
+        return landing_page
+
+    def check_title(self):
+        self.element_exists(self.get_page_title())

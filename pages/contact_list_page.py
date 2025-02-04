@@ -5,6 +5,10 @@ class ContactList(BasePage):
     def __init__(self):
         super().__init__()
         self.url = 'https://thinking-tester-contact-list.herokuapp.com/contactList'
+        self.title = 'My Contacts'
+
+    def get_page_title(self):
+        return f'//title[contains(text(), "{self.title}")]'
 
     @staticmethod
     def get_path_add_contact_button():
@@ -31,3 +35,6 @@ class ContactList(BasePage):
 
     def check_name_not_exists(self, name):
         self.element_not_exists(self.get_path_contact_name(name))
+
+    def check_title(self):
+        self.element_exists(self.get_page_title())

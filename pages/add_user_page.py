@@ -5,6 +5,10 @@ class AddUser(BasePage):
     def __init__(self):
         super().__init__()
         self.url = 'https://thinking-tester-contact-list.herokuapp.com/addUser'
+        self.title = 'Add User'
+
+    def get_page_title(self):
+        return f'//title[contains(text(), "{self.title}")]'
 
     @staticmethod
     def get_path_submit_button():
@@ -40,3 +44,6 @@ class AddUser(BasePage):
 
     def enter_password(self, password):
         self.enter_text(self.get_path_password_field(), password)
+
+    def check_title(self):
+        self.element_exists(self.get_page_title())

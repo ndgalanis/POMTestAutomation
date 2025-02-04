@@ -5,6 +5,13 @@ class StartingPage(BasePage):
     def __init__(self):
         super().__init__()
         self.url = 'https://thinking-tester-contact-list.herokuapp.com/'
+        self.title = 'Contact List App'
+
+    def get_page_title(self):
+        return f'//title[contains(text(), "{self.title}")]'
+
+    def get_page_url(self):
+        return self.url
 
     @staticmethod
     def get_path_sign_up_button():
@@ -27,6 +34,7 @@ class StartingPage(BasePage):
         self.click_element(path)
         from pages.add_user_page import AddUser
         landing_page = AddUser()
+        landing_page.check_title()
         return landing_page
 
     def enter_email(self, email):
@@ -40,3 +48,6 @@ class StartingPage(BasePage):
         from pages.contact_list_page import ContactList
         landing_page = ContactList()
         return landing_page
+
+    def check_title(self):
+        self.element_exists(self.get_page_title())
