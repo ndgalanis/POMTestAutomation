@@ -1,6 +1,12 @@
 from models.model_data.user_data import UserData
 from random import randint
 
+"""
+This file contains functions that generate test user data for automated tests.
+
+Each function creates an instance of the UserData class.
+"""
+
 def user_1():
     user = UserData()
     user.set_first_name(f'Robert_{randint(1, 100)}')
