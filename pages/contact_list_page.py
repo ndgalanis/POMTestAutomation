@@ -88,3 +88,11 @@ class ContactListPage(BasePage):
         :return: True if the title is found, otherwise raises an exception.
         """
         self.element_exists(self.get_page_title())
+
+    def refresh_page(self):
+        """
+        Refreshes the page.
+
+        :return: None.
+        """
+        self.refresh_browser()
