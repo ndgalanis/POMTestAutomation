@@ -17,7 +17,7 @@ class BasePage:
         """Initializes the BasePage and retrieves the WebDriver instance."""
         self.driver = SingletonDriver.get_driver()
 
-    def open_page(self, url):
+    def open_page(self, url: str):
         """
         Opens a webpage using the given URL.
 
@@ -25,7 +25,7 @@ class BasePage:
         """
         self.driver.get(url)
 
-    def click_element(self, xpath):
+    def click_element(self, xpath: str):
         """
         Clicks an element found by the provided XPath.
 
@@ -38,7 +38,7 @@ class BasePage:
         except (NoSuchElementException, TimeoutException):
             raise NoSuchElementException(f"Element with xpath '{xpath}' not found or not clickable.")
 
-    def enter_text(self, xpath, text):
+    def enter_text(self, xpath: str, text: str):
         """
         Enters text into an input field found by XPath.
 
@@ -53,7 +53,7 @@ class BasePage:
         except NoSuchElementException:
             raise NoSuchElementException(f"Input field with xpath '{xpath}' not found.")
 
-    def get_text(self, xpath):
+    def get_text(self, xpath: str):
         """
         Retrieves the text content of an element found by XPath.
 
@@ -66,7 +66,7 @@ class BasePage:
         except NoSuchElementException:
             raise NoSuchElementException(f"Element with xpath '{xpath}' not found.")
 
-    def element_exists(self, xpath):
+    def element_exists(self, xpath: str):
         """
         Checks if an element exists within a given timeout.
 
@@ -83,7 +83,7 @@ class BasePage:
         except TimeoutException:
             raise TimeoutException(f"Element with xpath '{xpath}' not found within 3 seconds.")
 
-    def element_not_exists(self, xpath, timeout=5):
+    def element_not_exists(self, xpath: str, timeout=5):
         """
         Checks if an element does not exist within a given timeout.
 

@@ -1,14 +1,14 @@
 from pages.base_page import BasePage
 
-class AddContact(BasePage):
+class AddContactPage(BasePage):
     """
-    AddContact page object representing the "Add Contact" page.
+    AddContactPage page object representing the "Add Contact" page.
     Inherits from BasePage and provides methods to interact with the contact form.
     """
 
     def __init__(self):
         """
-        Initializes the AddContact page with a predefined URL and title.
+        Initializes the AddContactPage page with a predefined URL and title.
         """
         super().__init__()
         self.url = 'https://thinking-tester-contact-list.herokuapp.com/addContact'
@@ -67,7 +67,7 @@ class AddContact(BasePage):
         """
         return '//button[@id="submit"]'
 
-    def enter_birthdate(self, birthdate):
+    def enter_birthdate(self, birthdate: str or int):
         """
         Enters text into the birthdate input field.
 
@@ -75,7 +75,7 @@ class AddContact(BasePage):
         """
         self.enter_text(self.get_path_birthdate_field(), birthdate)
 
-    def enter_first_name(self, first_name):
+    def enter_first_name(self, first_name: str):
         """
         Enters text into the first name input field.
 
@@ -83,7 +83,7 @@ class AddContact(BasePage):
         """
         self.enter_text(self.get_path_first_name_field(), first_name)
 
-    def enter_last_name(self, last_name):
+    def enter_last_name(self, last_name: str):
         """
         Enters text into the last name input field.
 
@@ -101,13 +101,14 @@ class AddContact(BasePage):
 
     def click_submit_button(self):
         """
-        Clicks the submit button to submit the form and navigates to the ContactList page.
+        Clicks the submit button to submit the form and returns an object of the landing page which is the
+        ContactList page.
 
         :return: An instance of the ContactList page object.
         """
         self.click_element(self.get_path_submit_button())
-        from pages.contact_list_page import ContactList
-        return ContactList()
+        from pages.contact_list_page import ContactListPage
+        return ContactListPage()
 
     def check_title(self):
         """

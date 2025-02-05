@@ -1,4 +1,2 @@
 selenium~=4.28.1
 pytest~=8.3.4
-webdriver-manager~=4.0.2
-globals~=0.3.36

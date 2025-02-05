@@ -1,14 +1,14 @@
 from pages.base_page import BasePage
 
-class AddUser(BasePage):
+class AddUserPage(BasePage):
     """
-    AddUser page object representing the user registration page.
+    AddUserPage page object representing the user registration page.
     Inherits from BasePage and provides methods to interact with the user registration form.
     """
 
     def __init__(self):
         """
-        Initializes the AddUser page with a predefined URL and title.
+        Initializes the AddUserPage page with a predefined URL and title.
         """
         super().__init__()
         self.url = 'https://thinking-tester-contact-list.herokuapp.com/addUser'
@@ -73,7 +73,7 @@ class AddUser(BasePage):
         """
         self.click_element(self.get_path_submit_button())
 
-    def enter_first_name(self, first_name):
+    def enter_first_name(self, first_name:str):
         """
         Enters text into the first name input field.
 
@@ -81,7 +81,7 @@ class AddUser(BasePage):
         """
         self.enter_text(self.get_path_first_name_field(), first_name)
 
-    def enter_last_name(self, last_name):
+    def enter_last_name(self, last_name:str):
         """
         Enters text into the last name input field.
 
@@ -89,7 +89,7 @@ class AddUser(BasePage):
         """
         self.enter_text(self.get_path_last_name_field(), last_name)
 
-    def enter_email(self, email):
+    def enter_email(self, email:str):
         """
         Enters text into the email input field.
 
@@ -97,7 +97,7 @@ class AddUser(BasePage):
         """
         self.enter_text(self.get_path_email_field(), email)
 
-    def enter_password(self, password):
+    def enter_password(self, password:str):
         """
         Enters text into the password input field.
 

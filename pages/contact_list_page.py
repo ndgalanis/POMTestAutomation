@@ -1,15 +1,15 @@
 from pages.base_page import BasePage
 
 
-class ContactList(BasePage):
+class ContactListPage(BasePage):
     """
-    ContactList page object representing the contact list page in the application.
+    ContactListPage page object representing the contact list page in the application.
     Inherits from BasePage and provides methods to interact with the contact list page.
     """
 
     def __init__(self):
         """
-        Initializes the ContactList page with a predefined URL and title.
+        Initializes the ContactListPage page with a predefined URL and title.
         """
         super().__init__()
         self.url = 'https://thinking-tester-contact-list.herokuapp.com/contactList'
@@ -33,7 +33,7 @@ class ContactList(BasePage):
         return '//button[@id="add-contact"]'
 
     @staticmethod
-    def get_path_contact_name(name):
+    def get_path_contact_name(name: str):
         """
         Generates the XPath for locating a contact by name.
 
@@ -44,26 +44,26 @@ class ContactList(BasePage):
 
     def click_add_contact_button(self):
         """
-        Clicks the "Add Contact" button and navigates to the Add Contact page.
+        Clicks the "Add Contact" button and returns an object of the landing page which is the AddContactPage page.
 
         :return: An instance of the AddContact page object.
         """
         self.click_element(self.get_path_add_contact_button())
-        from pages.add_contact_page import AddContact
-        return AddContact()
+        from pages.add_contact_page import AddContactPage
+        return AddContactPage()
 
-    def click_contact_name(self, name):
+    def click_contact_name(self, name: str):
         """
-        Clicks on a contact name and navigates to the Contact Details page.
+        Clicks on a contact name and returns an object of the landing page which is the ContactDetailsPage page.
 
         :param name: The name of the contact to click.
         :return: An instance of the ContactDetails page object.
         """
         self.click_element(self.get_path_contact_name(name))
-        from pages.contact_details_page import ContactDetails
-        return ContactDetails()
+        from pages.contact_details_page import ContactDetailsPage
+        return ContactDetailsPage()
 
-    def check_name_exists(self, name):
+    def check_name_exists(self, name:str):
         """
         Checks if a contact name exists in the contact list.
 
@@ -72,7 +72,7 @@ class ContactList(BasePage):
         """
         self.element_exists(self.get_path_contact_name(name))
 
-    def check_name_not_exists(self, name):
+    def check_name_not_exists(self, name:str):
         """
         Checks that a contact name does not exist in the contact list.
 

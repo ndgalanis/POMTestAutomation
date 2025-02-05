@@ -1,14 +1,14 @@
 from pages.base_page import BasePage
 
-class ContactDetails(BasePage):
+class ContactDetailsPage(BasePage):
     """
-    ContactDetails page object representing the contact details page in the application.
+    ContactDetailsPage page object representing the contact details page in the application.
     Inherits from BasePage and provides methods to interact with the contact details page.
     """
 
     def __init__(self):
         """
-        Initializes the ContactDetails page with a predefined URL.
+        Initializes the ContactDetailsPage page with a predefined URL.
         """
         super().__init__()
         self.url = 'https://thinking-tester-contact-list.herokuapp.com/contactDetails'
@@ -37,16 +37,16 @@ class ContactDetails(BasePage):
         """
         self.click_element(self.get_path_delete_contact_button())
 
-    def click_ok_in_alert(self):
+    def click_ok_in_delete_alert(self):
         """
         Clicks OK in the alert dialog that appears after deleting a contact.
-        Redirects back to the ContactList page.
+        Returns an object of the landing page which is ContactListPage page.
 
-        :return: An instance of the ContactList page object.
+        :return: An instance of the ContactListPage page object.
         """
         self.alert_accept()
-        from pages.contact_list_page import ContactList
-        return ContactList()
+        from pages.contact_list_page import ContactListPage
+        return ContactListPage()
 
     def check_title(self):
         """

@@ -74,8 +74,8 @@ class StartingPage(BasePage):
         """
         path = self.get_path_sign_up_button()
         self.click_element(path)
-        from pages.add_user_page import AddUser
-        landing_page = AddUser()
+        from pages.add_user_page import AddUserPage
+        landing_page = AddUserPage()
         landing_page.check_title()
         return landing_page
 
@@ -102,8 +102,8 @@ class StartingPage(BasePage):
         :return: An instance of the ContactList page object.
         """
         self.click_element(self.get_path_submit_button())
-        from pages.contact_list_page import ContactList
-        return ContactList()
+        from pages.contact_list_page import ContactListPage
+        return ContactListPage()
 
     def check_title(self):
         """
