@@ -51,6 +51,8 @@ class UserActions:
         page3 = page2.click_submit_button()
         page3.check_title()
         page3.check_name_exists(new_contact.get_full_name())
+        page3.refresh_page()
+        page3.check_name_exists(new_contact.get_full_name())
 
     def log_in(self):
         """
