@@ -1,23 +1,29 @@
-from pages.starting_page import StartingPage
-
+import importlib
 
 class Navigator:
     """
     A utility class for navigating to different pages in the application.
-    Provides methods for navigating to specific pages and interacting with them.
     """
 
     @staticmethod
-    def starting_page():
+    def navigate_to(page_name):
         """
-        Navigates to the Starting Page (home page) and returns an instance of the page object.
+        Dynamically loads and returns an instance of the requested page.
 
-        This method opens the starting page URL, checks if the title is correct,
-        and returns an instance of the StartingPage class to allow further interactions.
-
-        :return: An instance of the StartingPage.
+        :param page_name: The name of the page (e.g., "starting_page").
+        :return: An instance of the specified page class.
         """
-        page = StartingPage()
+        module_name = f"pages.{page_name}"
+        class_name = "".join(word.capitalize() for word in page_name.split("_"))
+        try:
+            module = importlib.import_module(module_name)
+            page_class = getattr(module, class_name)
+        except (ModuleNotFoundError, AttributeError) as e:
+            raise ValueError(f"Failed to load page '{page_name}': {e}")
+
+        page = page_class()
         page.open_page(page.get_page_url())
         page.check_title()
         return page
+
+

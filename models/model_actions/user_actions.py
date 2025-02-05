@@ -1,5 +1,4 @@
 from pages.navigator import Navigator
-from models.model_data.user_data import UserData
 
 class UserActions:
     """
@@ -7,14 +6,15 @@ class UserActions:
     adding and deleting contacts.
     """
 
-    def __init__(self, user_data: UserData):
+    def __init__(self, user_data):
         """
         Initializes the UserActions class with user data.
 
         :param user_data: The user data object containing user information (e.g., first name, email).
         """
         self.user_data = user_data
-        self.navigate_to = Navigator()
+        self.navigator = Navigator()
+
 
     def sign_up(self):
         """
@@ -24,7 +24,7 @@ class UserActions:
 
         :return: None
         """
-        page1 = self.navigate_to.starting_page()
+        page1 = self.navigator.navigate_to("starting_page")
         page2 = page1.click_sign_up_button()
         page2.check_title()
         page2.enter_first_name(self.user_data.get_first_name())
@@ -33,7 +33,7 @@ class UserActions:
         page2.enter_password(self.user_data.get_password())
         page2.click_submit_button()
 
-    def add_contact(self, new_contact: UserData):
+    def add_contact(self, new_contact):
         """
         Adds a new contact for the logged-in user.
 
@@ -59,7 +59,7 @@ class UserActions:
 
         :return: The page object after the user has logged in.
         """
-        page1 = self.navigate_to.starting_page()
+        page1 = self.navigator.navigate_to("starting_page")
         page1.check_title()
         page1.enter_email(self.user_data.get_email())
         page1.enter_password(self.user_data.get_password())
@@ -67,7 +67,7 @@ class UserActions:
         page2.check_title()
         return page2
 
-    def delete_contact(self, contact_to_delete: UserData):
+    def delete_contact(self, contact_to_delete):
         """
         Deletes an existing contact for the logged-in user.
 
@@ -85,7 +85,7 @@ class UserActions:
         page3.check_title()
         page3.check_name_not_exists(contact_to_delete.get_last_name())
 
-    def check_invalid_birthdate_error_for_new_contact(self, user_with_invalid_birthdate: UserData):
+    def check_invalid_birthdate_error_for_new_contact(self, user_with_invalid_birthdate):
         """
         Checks for an invalid birthdate error while adding a new contact.
 
