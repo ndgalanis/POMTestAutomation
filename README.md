@@ -1,4 +1,5 @@
 This repository contains automated tests for Thinking Tester Contact List using Python, pytest, and Selenium.
+Runs with Google Chrome.
 
 Test Cases:
 
