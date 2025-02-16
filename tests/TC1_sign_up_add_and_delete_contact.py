@@ -1,9 +1,9 @@
-from test_data.users import user_1, user_2
+from test_data.users import generate_random_user
 
 class TestSignUpAddAndDeleteContact:
 
-    USER_1 = user_1()
-    USER_2 = user_2()
+    USER_1 = generate_random_user()
+    USER_2 = generate_random_user()
 
     def test_sign_up(self):
         """
