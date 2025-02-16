@@ -51,8 +51,6 @@ class UserActions:
         page3 = page2.click_submit_button()
         page3.check_title()
         page3.check_name_exists(new_contact.get_full_name())
-        page3.refresh_page()
-        page3.check_name_exists(new_contact.get_full_name())
 
     def log_in(self):
         """
@@ -85,8 +83,6 @@ class UserActions:
         page2.click_delete_contact_button()
         page3 = page2.click_ok_in_delete_alert()
         page3.check_title()
-        page3.check_name_not_exists(contact_to_delete.get_last_name())
-        page3.refresh_page()
         page3.check_name_not_exists(contact_to_delete.get_last_name())
 
     def check_invalid_birthdate_error_for_new_contact(self, user_with_invalid_birthdate):

@@ -119,10 +119,3 @@ class BasePage:
         """
         if self.driver:
             self.driver.quit()
-
-    def refresh_browser(self):
-        """
-        Refreshes the browser.
-        """
-        if self.driver:
-            self.driver.refresh()
