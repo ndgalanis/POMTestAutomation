@@ -1,9 +1,9 @@
-from test_data.users import user_3, user_4
+from test_data.users import generate_random_user, user_with_wrong_birthdate_format
 
 class TestErrorMessageForNewContactWithInvalidBirthdate:
 
-    USER_1 = user_3()
-    USER_2 = user_4()
+    USER_1 = generate_random_user()
+    USER_2 = user_with_wrong_birthdate_format()
 
     def test_set_up(self):
         """

@@ -1,6 +1,6 @@
 import importlib
 
-class Navigator:
+class PageNavigator:
     """
     A utility class for navigating to different pages in the application.
     """

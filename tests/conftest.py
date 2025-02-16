@@ -1,5 +1,5 @@
 import pytest
-from utils.singleton_driver import SingletonDriver
+from pages.page_utils.singleton_driver import SingletonDriver
 
 @pytest.fixture(scope="function", autouse=True)
 def cleanup_after_test():

@@ -1,4 +1,4 @@
-from models.model_actions.user_actions import UserActions
+from models.model_actions_classes.user_actions import UserActions
 
 class UserData:
     """
