@@ -1,5 +1,5 @@
 from pages.page_utils.base_page import BasePage
-from pages.page_utils.page_constants import Constants
+from pages.page_utils.page_constants import PageConstants
 
 class StartingPage(BasePage):
     """
@@ -12,7 +12,7 @@ class StartingPage(BasePage):
         Initializes the StartingPage with a predefined URL and title.
         """
         super().__init__()
-        self.url = f'{Constants.BASE_URL}'
+        self.url = f'{PageConstants.BASE_URL}'
         self.title = 'Contact List App'
 
     def get_page_title(self):
