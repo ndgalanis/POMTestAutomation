@@ -15,7 +15,6 @@ class UserActions:
         self.user_data = user_data
         self.navigator = PageNavigator()
 
-
     def sign_up(self):
         """
         Performs the sign-up process for a new user by entering user data and submitting the form.

@@ -1,4 +1,4 @@
-from models.model_data.user_data import UserData
+from models.model_data_classes.user_data import UserData
 from random import randint
 
 """
