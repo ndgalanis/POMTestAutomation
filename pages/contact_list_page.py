@@ -1,5 +1,5 @@
-from pages.base_page import BasePage
-
+from pages.page_utils.base_page import BasePage
+from pages.page_utils.page_constants import Constants
 
 class ContactListPage(BasePage):
     """
@@ -12,7 +12,7 @@ class ContactListPage(BasePage):
         Initializes the ContactListPage page with a predefined URL and title.
         """
         super().__init__()
-        self.url = 'https://thinking-tester-contact-list.herokuapp.com/contactList'
+        self.url = f'{Constants.BASE_URL}/contactList'
         self.title = 'My Contacts'
 
     def get_page_title(self):

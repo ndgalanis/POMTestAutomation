@@ -1,4 +1,4 @@
-from pages.navigator import Navigator
+from pages.page_utils.page_navigator import PageNavigator
 
 class UserActions:
     """
@@ -13,7 +13,7 @@ class UserActions:
         :param user_data: The user data object containing user information (e.g., first name, email).
         """
         self.user_data = user_data
-        self.navigator = Navigator()
+        self.navigator = PageNavigator()
 
 
     def sign_up(self):
